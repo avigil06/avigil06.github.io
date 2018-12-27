@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.52" />
+
+    
+    
+    
+
+<title>Keyboard Accessible Radios and Checkboxes in Safari • Contained Chaos</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Keyboard Accessible Radios and Checkboxes in Safari"/>
+<meta name="twitter:description" content="Recently, while working on a radio pane design for a product, I discovered MacOS Safari does not follow the same keyboard tab behaviors that keyboard users expect. It is normal to use the tab key to progress from field to field as you complete a form. This behavior has been ingrained in human kind. It&rsquo;s not even exclusive to web applications. So why did Apple decide they needed to go against convention."/>
+
+<meta property="og:title" content="Keyboard Accessible Radios and Checkboxes in Safari" />
+<meta property="og:description" content="Recently, while working on a radio pane design for a product, I discovered MacOS Safari does not follow the same keyboard tab behaviors that keyboard users expect. It is normal to use the tab key to progress from field to field as you complete a form. This behavior has been ingrained in human kind. It&rsquo;s not even exclusive to web applications. So why did Apple decide they needed to go against convention." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/posts/keyboard-accessible-radios-and-checkboxes-in-safari/" /><meta property="article:published_time" content="2018-12-12T16:44:48-05:00"/>
+<meta property="article:modified_time" content="2018-12-12T16:44:48-05:00"/>
+
+
+    
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.6a83d62c39a364f036df4db1ecd564645635d6c7fc182425cb501218fec485f5.css" integrity="sha256-aoPWLDmjZPA2302x7NVkZFY11sf8GCQly1ASGP7EhfU=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    
+
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="http://example.org/">Contained Chaos</a>
+      </span>
+      
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Contained Chaos</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/">
+						<span>Home</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/avigil06" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:avigil06@gmail.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2018 Andrew Vigil
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Keyboard Accessible Radios and Checkboxes in Safari</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Dec 12, 2018
+    
+    
+    
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 5 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<p>Recently, while working on a radio pane design for a product, I discovered MacOS Safari does not follow the same keyboard tab behaviors that keyboard users expect. It is normal to use the tab key to progress from field to field as you complete a form. This behavior has been ingrained in human kind. It&rsquo;s not even exclusive to web applications. So why did Apple decide they needed to go against convention. The short version, I have not been able to find a reason. MacOS has OS level preferences that can remove this feature, but would it not be in the best interest of the web site to ensure that behavior is consistent from browser to browser and platform to platform.</p>
+
+<p>My goal is to find a solution that still allows for semantic and accessible radio groups and checkboxes, while providing the keyboard controls expected by the end users. Here is the acceptance criteria.</p>
+
+<h2 id="checkbox-keyboard-navigation">Checkbox Keyboard Navigation</h2>
+
+<ul>
+<li>Click/Tap Events toggle the checked state</li>
+<li>Shift + Tabbing from an immediate previous element</li>
+<li>Tabbing to an immediate next element</li>
+<li>Space bar will toggle the checked state</li>
+</ul>
+
+<h2 id="radio-keyboard-navigations">Radio Keyboard Navigations</h2>
+
+<ul>
+<li>Click/Tab Events select the radio group option</li>
+<li>Shift + Tabbing from an immediate previous element</li>
+<li>Tabbing to an immediate next element</li>
+<li>Arrow keys will trigger radio option checked state</li>
+</ul>
+
+<p>We will use the above as the basis of passing or failing this experiment.</p>
+
+<h2 id="first-attempt">First Attempt</h2>
+
+<p><p data-height="384" data-theme-id="0" data-slug-hash="LMpmOb" data-default-tab="html,result" data-user="avigil06" data-pen-title="Basic Checkbox and Radio Group" class="codepen">See the Pen <a href="https://codepen.io/avigil06/pen/LMpmOb/">Basic Checkbox and Radio Group</a> by Andrew (<a href="https://codepen.io/avigil06">@avigil06</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script></p>
+
+<p>I decided to start off with stylized radio and checkboxes since most design systems will require you to hide the inputs and use pseudo elements, or other means, to create a custom look. I also changed the color of the label when the sibling input has focus, just to give us an indicator of where we are on the page.</p>
+
+<p>Those of you on a MacOS device, you can open chrome and test tabbing through the test form in the above pen. You will notice the text color change, using the space bar on the checkbox should toggle it and tabbing into the radio group should allow you to modify your selection with the arrow keys. Ready for it? Try it in Safari&hellip;If your keyboard tab was not inserting you into the form and allowing any modifications of the checkbox or radio fields, you&rsquo;re not alone.</p>
+
+<h2 id="second-attempt">Second Attempt</h2>
+
+<p>In this attempt, I am going to remove input fields entirely. I have decided to use a combination of tab index, aria attributes, and roles. I did the checkbox myself, but I copied the radio group code from the MDN Web Docs, just to make sure I had something semantically correct to build off of. Here is the result.</p>
+
+<p><p data-height="413" data-theme-id="0" data-slug-hash="rojQXe" data-default-tab="html,result" data-user="avigil06" data-pen-title="Role/Aria Checkbox and Radio Group" class="codepen">See the Pen <a href="https://codepen.io/avigil06/pen/rojQXe/">Role/Aria Checkbox and Radio Group</a> by Andrew (<a href="https://codepen.io/avigil06">@avigil06</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script></p>
+
+<p>The first thing you should probably notice is we now have a JavaScript tab. That&rsquo;s right, this solution only works with JavaScript as we need to listen for events to provide both mouse and keyboard control. The checkbox is pretty straight forward. We have a span with a tab index, aria-checked, and of course the role. These will be the most important pieces. The radio group is similar except we have individual radio role elements which are wrapped by an element with a role of radio group.</p>
+
+<p>Here is where the magic happens. All elements with the role of radio or checkbox have a tab index. On checkboxes, this value must be 0. For individual radios in a radio group, this will need to be 0 if the radio is selected, and -1 if the radio is not. It is this tab index which allows Safari to delegate events to the keyboard. Go ahead, try to tab through this &ldquo;form&rdquo;. Those of you with Safari will see the cursor does not skip these elements anymore.</p>
+
+<p>The last thing is simply to provide the native functionality to meet the remaining of our acceptance criteria. Lets talk about the JavaScript for our checkbox. We are listening for click events and toggling the <code>aria-checked</code> attribute of the <code>span[role=&quot;checkbox&quot;]</code>. This allows for our CSS to show a checked or unchecked state. We also have a key up listener which allows us to listen to execute the same toggle if the space bar is pressed while the span has focus. Not to bad.</p>
+
+<p>The radio group is a bit more complex. Just like the checkbox, we listen for mouse clicks on any individual click. We reset the radio group to an unselected state and then set the appropriate radio to checked. Our key up event gets a bit more complex since we must detect directional key presses. Up and Left should demote the selection to the previous option, unless no more exist. Just the opposite for Down and Right.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>All in all, I am pretty happy with how this experiment turned out. I&rsquo;d like to provide a word of caution though. Using this method with vanilla JavaScript still leaves a lot of holes in having a functional form. This form is no longer serialize-able without intercepting the submit event and writing custom logic. This would be very messy if you needed to destroy or add new checkbox or radio groups to your form programmatically. The listeners are not removed or added in any intelligent way. This was really just for proof of concept. If I had an actual requirement to implement this in a project, I would probably opt for something that can track the value of the form in memory instead of holding state in the DOM. In this way, I would already be relying on intercepting the submit event of the form and serializing the form into a request payload.</p>
+
+<p>Anyway, I had fun with this and I hope you enjoyed reading about it.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    
+    <a href="/posts/getting-started-blog/" class="navigation-next">
+      <span class="navigation-tittle">Getting started with my blog</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+    <script type="text/javascript">
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

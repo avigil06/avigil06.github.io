@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Contained Chaos</title>
+    <link>http://example.org/</link>
+    <description>Recent content on Contained Chaos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Dec 2018 15:20:18 -0500</lastBuildDate>
+    
+	<atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting started with my blog</title>
+      <link>http://example.org/posts/getting-started-blog/</link>
+      <pubDate>Mon, 24 Dec 2018 15:20:18 -0500</pubDate>
+      
+      <guid>http://example.org/posts/getting-started-blog/</guid>
+      <description>At the start of 2018, I decided I really wanted to start keeping a log of things I learn. I&amp;rsquo;ve always found teaching to be the best method for learning. You start off researching your topic until you know enough to consider yourself a subject matter expert. Then you teach it to someone. The company I work for provides a large amount of opportunity to put on Learning &amp;amp; Development classes, but that&amp;rsquo;s not how my goal came to be.</description>
+    </item>
+    
+    <item>
+      <title>Keyboard Accessible Radios and Checkboxes in Safari</title>
+      <link>http://example.org/posts/keyboard-accessible-radios-and-checkboxes-in-safari/</link>
+      <pubDate>Wed, 12 Dec 2018 16:44:48 -0500</pubDate>
+      
+      <guid>http://example.org/posts/keyboard-accessible-radios-and-checkboxes-in-safari/</guid>
+      <description>Recently, while working on a radio pane design for a product, I discovered MacOS Safari does not follow the same keyboard tab behaviors that keyboard users expect. It is normal to use the tab key to progress from field to field as you complete a form. This behavior has been ingrained in human kind. It&amp;rsquo;s not even exclusive to web applications. So why did Apple decide they needed to go against convention.</description>
+    </item>
+    
+  </channel>
+</rss>
